@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', function () {
+    $alldata=App\Chanel::all();
+    return view('chanel')->with('chanel',$alldata);
+});
+
+Route::post('/saveChanel', 'ChanelController@save');
+Route::get('/updateChanel/{id}', 'ChanelController@update');
+Route::get('/deleteChanel/{id}', 'ChanelController@delete');
+Route::post('/editChanel', 'ChanelController@edit');
