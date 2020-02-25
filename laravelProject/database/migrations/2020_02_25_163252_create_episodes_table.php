@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChanelsTable extends Migration
+class CreateEpisodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateChanelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('chanels', function (Blueprint $table) {
+        Schema::create('episodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('logo');     
+            $table->string('logo');            
+            $table->integer('chanel_id');
             $table->string('startdate');
             $table->string('enddate');
             $table->timestamps();
@@ -31,6 +32,6 @@ class CreateChanelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chanels');
+        Schema::dropIfExists('episodes');
     }
 }

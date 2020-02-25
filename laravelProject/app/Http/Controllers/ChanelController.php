@@ -34,9 +34,6 @@ class ChanelController extends Controller
         $data->enddate =$enddate;
         $data->save();
 
-        
-        $alldata=Chanel::all();
-        return view('chanel')->with('chanel',$alldata);
     }
 
     public function update ($id){
@@ -47,6 +44,11 @@ class ChanelController extends Controller
     public function delete ($id){
         $chanel=Chanel::find($id);
         $chanel->delete();
-      //  return redirect()->back();
+     
+    }
+
+    public function getall (){
+        $alldata=Chanel::all();
+        return  $alldata;
     }
 }
