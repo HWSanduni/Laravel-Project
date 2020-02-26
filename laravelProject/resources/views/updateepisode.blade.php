@@ -6,6 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+  .footer {
+    min-height: 50px;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: $height-footer;
+    margin-top: auto;
+    background:#17202A; 
+}
+
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -28,53 +41,47 @@
   </div>  
 </nav>
 <div class="card border-primary mb-3" style="min-width: 400px;margin:15px;">
-  <div class="card-header">Episode Information</div>
+  <div class="card-header">Edit Episode Information</div>
   <div class="card-body text-primary">
-  @foreach($errors->all() as $error)
-  <div class="alert alert-danger" role="alert">
-  <li>{{$error}}</li>
-  </div>
-  @endforeach
-  <form method="post" action="/saveEpisode" enctype="multipart/form-data">
-  @csrf
+  <form method="post" action="/editEpisode">
+  {{ csrf_field() }}
   <div class="form-row">
     <div class="form-group col-md-6">
     <label for="chanelid">Chenel Name</label>
-    <select id="service_status" id="chanelid" name="chanelid" class="form-control">
-    @foreach ($episode as $chanels)
-        <option value="{{$chanels->id}}">{{$chanels->name}}</option>
-        @endforeach
-      </select>
+    <input type="text" hidden name="chanelid" value="{{$episodedata->chanel_id}}">
+    <input type="text" name="chanel_Name" class="form-control" value="{{$episodedata->chanel_Name}}" readonly>
+      </div>
 </div>
-    </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="episodeName">Episode Name</label>
-      <input type="text" class="form-control" id="episodeName" name="name" required>
+      <input type="text" hidden name="id" value="{{$episodedata->id}}">
+      <input type="text" class="form-control" id="episodeName" name="name" value="{{$episodedata->name}}">
     </div>
     <div class="form-group col-md-6">
       <label for="description">Description</label>
-      <input type="text" class="form-control" id="description" name="description" required>
+      <input type="text" class="form-control" id="description" name="description"  value="{{$episodedata->description}}">
     </div>
   </div>
   <div class="form-row">
   <div  class="form-group col-md-6" >
     <label for="startdate">Start Date</label>
-    <input type="text" id="startdate" class="form-control" autocomplete="off" name="startdate" required>
+    <input type="text" id="startdate" class="form-control" autocomplete="off" name="startdate"  value="{{$episodedata->startdate}}">
   </div>
   <div  class="form-group col-md-6">
     <label for="enddate">End Date</label>
-    <input type="text" id="enddate" class="form-control" autocomplete="off" name="enddate" required>
+    <input type="text" id="enddate" class="form-control" autocomplete="off" name="enddate" value="{{$episodedata->enddate}}">
   </div>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-    <label for="enddate">Episode logo</label>
-    <input type="file" name="image" id="" accept="image/*"/ >
+    <input  name="image" hidden value="{{$episodedata->logo}}">
+    <br>
+    <img src="/images/{{$episodedata->logo}}" style="margin-left:10px;width:250px;height:250px;"/>
     </div>
     </div>
-  <button type="submit" class="btn btn-primary" style="float:right;" >Save</button>
-  <a href="/viewepisode" class="btn btn-outline-secondary" role="button" aria-disabled="true">View Episode Details</a>
+   
+  <button type="submit" class="btn btn-primary" style="float:right;" >Update</button>
 </form>
   </div>
 </div>

@@ -17,8 +17,9 @@ class CreateEpisodesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('description');
-            $table->string('logo');            
-            $table->integer('chanel_id');
+            $table->string('logo'); 
+            $table->integer('chanel_id')->unsigned();
+            $table->foreign('chanel_id')->references('id')->on('chanels')->onDelete('cascade');           
             $table->string('startdate');
             $table->string('enddate');
             $table->timestamps();

@@ -6,18 +6,49 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+  .footer {
+    min-height: 50px;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: $height-footer;
+    margin-top: auto;
+    background:#17202A; 
+}
+
+</style>
+
 </head>
 <body>
-
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" >Media in Sri Lanka</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="/">HOME</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="/chanels">CHANEL</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/episodes">EPISODE</a>
+      </li>    
+    </ul>
+  </div>  
+</nav>
 <div class="card border-primary mb-3" style="min-width: 400px;margin:15px;">
-  <div class="card-header">Chanel Information</div>
+  <div class="card-header">Edit Chanel Information</div>
   <div class="card-body text-primary">
   <form method="post" action="/editChanel">
   {{ csrf_field() }}
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="chanelName">Channel Name</label>
-      <input type="text" hidden name="name" value="{{$chaneldata->id}}">
+      <input type="text" hidden name="id" value="{{$chaneldata->id}}">
       <input type="text" class="form-control" id="chanelName" name="name" value="{{$chaneldata->name}}">
     </div>
     <div class="form-group col-md-6">
@@ -37,16 +68,15 @@
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
-    <label for="logo">Chanel Logo</label>
-    <input type="file" class="form-control-file" id="logo">
+    <input  name="image" hidden value="{{$chaneldata->logo}}">
+    <br>
+    <img src="/images/{{$chaneldata->logo}}" style="margin-left:10px;width:250px;height:250px;"/>
     </div>
     </div>
-    <button type="button" class="btn btn-warning" style="color:white">Cancel</button>
   <button type="submit" class="btn btn-primary" style="float:right;" >Update</button>
 </form>
   </div>
 </div>
-
 </body>
 
 
